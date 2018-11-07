@@ -378,7 +378,45 @@
 		#regDone {
 			display: none;
 		}
-	</style>
+		
+		/* https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3 */
+		input[type="checkbox"] {
+		  position: absolute;
+		  left: -150vw;
+		}
+		input[type="checkbox"] + label {
+		  position: relative;
+		  padding-left: 1.95em;
+		  cursor: pointer;
+		}
+		input[type="checkbox"] + label:before {
+		  content: '';
+		  position: absolute;
+		  left: 0; top: 0;
+		  width: 1.25em; height: 1.25em;
+		  border: 2px solid #ccc;
+		  background: #fff;
+		  border-radius: 4px;
+		  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+		}
+		input[type="checkbox"] + label:after {
+		  content: '✓';
+		  position: absolute;
+		  top: .15em;
+		  left: .22em;
+		  font-size: 1.3em;
+		  line-height: 0.8;
+		  color: #09ad7e;
+		  transition: all .2s;
+		  font-family: system-ui;
+		}
+		input[type="checkbox"]:not(:checked) + label:after {
+		  opacity: 0;
+		}
+		input[type="checkbox"]:checked + label:after {
+		  opacity: 1;
+		}
+		</style>
 </head>
 
 <body>
@@ -467,7 +505,7 @@
 					<div class="page unloadedPage" id="contactPage">
 						<div class="backdropHov">
 							<span class="descriptor">Los Altos Hacks - 2/3</span>
-							<p class="text-muted">The information from further questions will be used internally only and not distributed or printed onto the physical card.</p>
+							<p class="text-muted">The information from further questions will be used internally only and not distributed or printed onto your physical badge.</p>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-gender">What is your gender?</h3>
 								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-gender">
@@ -582,14 +620,17 @@
 							<div class="questionGroup focus">
 								<h3 class="slim-title" for="entry-mlhcode">I agree to the MLH Code of Conduct</h3>
 								<input class="termsCheck" type="checkbox" id="entry-mlhcode" value="accepted">
+							    <label for="entry-mlhcode"></label>
 							</div>
-							<div class="questionGroup">
+							<div class="questionGroup focus">
 								<h3 class="slim-title" for="entry-mlhterms">I agree to the terms of both the MLH Contest Terms and Conditions (1) and the MLH Privacy Policy (2). Please note that you may receive pre and post-event informational e-mails and occasional messages about hackathons from MLH as per the MLH Privacy Policy.</h3>
 								<input class="termsCheck" type="checkbox" id="entry-mlhterms" value="accepted">
+							    <label for="entry-mlhterms"></label>
 							</div>
-							<div class="questionGroup">
+							<div class="questionGroup focus">
 								<h3 class="slim-title" for="entry-lahpriv">By submitting your application, you acknowledge and agree that the organization behind Los Altos Hacks III (Youth Leadership Incubator Inc dba Hack+) may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact legal@hackplus.io for any clarifications, questions, or requests regarding this agreement.</h3>
 								<input class="termsCheck" type="checkbox" id="entry-lahpriv" value="accepted">
+							    <label for="entry-lahpriv"></label>
 							</div>
 							<button class="lahBtn disabled" id="sendReg"><span class="buttonLabel">All done &rsaquo;</span></button>
 						</div>
@@ -716,7 +757,9 @@
 		});
 		
 		$('.slickInput, .radioBox', '#hackerDetailsPage').on('input change', function() {
+			//https://www.linkedin.com/in/somename or https://www.linkedin.com/in/first-last-12345678
 			var linkedin = $('#entry-linkedin').val().trim();
+			//
 			var github = $('#entry-github').val().trim();
 			var attended = $('#entry-attendednum .radioBox:checked').val();
 			$('#badge-linkedin').text(linkedin);
@@ -761,20 +804,6 @@
 		$('.termsCheck', '#finalizePage').on('change', function() {
 			var $thisQGroup = $(this).closest('.questionGroup');
 			var $nextQGroup = $thisQGroup.nextAll();
-			if($(this).is(':checked')) {
-				$nextQGroup.each(function() {
-					if($(this).is('.questionGroup')) {
-						$(this).addClass('focus');
-					}
-					return false;
-				})
-			} else {
-				$nextQGroup.each(function() {
-					if($(this).is('.questionGroup')) {
-						$(this).addClass('focus');
-					}
-				});
-			}
 			if($('.termsCheck:not(:checked)', '#finalizePage').length == 0)
 				$('#sendReg').removeClass('disabled');
 			else 
