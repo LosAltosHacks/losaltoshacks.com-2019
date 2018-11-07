@@ -641,9 +641,6 @@
 	</main>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
-		//Animation cycle
-		
-		//Dropdown the badge to center-screen
 		var screenHeight = $(window).height();
 		var badgeHeight = $('.badge').height();
 		$('.badge').css('margin-top', (screenHeight/2 - badgeHeight/2)+'px');
@@ -651,8 +648,6 @@
 		setTimeout(function() {
 			$('.field-sect').addClass('open');
 		}, 1500)
-		
-		//progression buttons
 		$('#welcomeProgress').click(function() {
 			$('#welcomePage').addClass('pullOffscreen');
 			$('#namePage').removeClass('unloadedPage');
@@ -670,7 +665,6 @@
 				var altVal = value.replace(/[^0-9]/g, "");
 				if(altVal != value) {
 					$(this).val(altVal);
-					//add some kind of reaction
 					var $parentHolster = $(this).closest('.questionGroup');
 					if(!$parentHolster.is(':animated')) {
 						$parentHolster.animate({'margin-left': '-20px'}, 200, function() {
@@ -691,7 +685,6 @@
 			last = last.charAt(0).toUpperCase() + last.slice(1);
 			$('#badge-name').text(first + " " + last);
 			var ageAddon = (age > 0) ? " ("+age+")" : "";
-			//translate school to just initials
 			if(school != "")
 				$('#badge-school').text(school.match(/\b(\w)/g).join('').toUpperCase());
 			if(grade > 0)
@@ -726,6 +719,7 @@
 			var parname = $('#entry-parent-name').val().trim();
 			var paremail = $('#entry-parent-email').val().trim();
 			var tshirt = $('#entry-shirtsize .radioBox:checked').val();
+			
 			$('#badge-email').text(email);
 			$('#badge-phone').text(phone);
 			$('#badge-parent-name').text(parname);
@@ -773,12 +767,22 @@
 		});
 		
 		$('#contactPageBtn').click(function() {
+			
+			var age = $('#entry-age').val().trim();
+			if(parseInt(age) >= 18) {
+				$('#entry-parent-name').val('n/a').prop('disabled', true);
+				$('#entry-parent-email').val('n/a').prop('disabled', true);
+			} else {
+				$('#entry-parent-name').prop('disabled', false);
+				$('#entry-parent-email').prop('disabled', false);
+			}
+			
 			$('#namePage').addClass('pullOffscreen');
 			$('.badge').addClass('flip');
 			$('#contactPage').removeClass('unloadedPage');
 			$('#contactPage .slickInput')[0].focus();
 		});
-		$('#hackerBGBtn').click(function() {
+		$('#hackerBGBtn').click(function() {			
 			$('#contactPage').addClass('pullOffscreen');
 			$('#hackerDetailsPage').removeClass('unloadedPage');
 			$('#hackerDetailsPage .slickInput')[0].focus();
