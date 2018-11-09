@@ -151,26 +151,24 @@
 		.lahBtn {
 			line-height: 2rem;
 		    border-radius: 5px;
-			background-color: #11577c;
+			background-color: #0f70b1;
 		    padding: 5px 20px;
 		    text-transform: uppercase;
 		    font-size: 1.2rem;
 		    font-weight: bolder;
 			display: block;
 			cursor: pointer;
-			transition: background-color 0.4s, opacity 0.4s;
-			border-color: #123140;
+			box-shadow: 0 0 0em rgba(255, 255, 255, 0.0);
+			opacity: 0.8;
+			transition: box-shadow 0.4s, opacity 0.4s;
+			border-color: rgb(11, 71, 111);
 		}
 		.lahBtn > .buttonLabel {
-			color: transparent;
-		    background-color: #1f3740;
-		    -webkit-background-clip: text;
-		    -moz-background-clip: text;
-		    background-clip: text;
-		    text-shadow: 1px 1px 0px rgb(243, 243, 243);
+			color: white;
 		}
 		.lahBtn:hover {
-			background-color: #103548;
+			opacity: 1;
+			box-shadow: 0 0 2em rgba(255, 255, 255, 0.2);
 		}
 		.lahBtn.disabled {
 			opacity: 0.4;
@@ -216,6 +214,9 @@
 		}
 		h3.slim-title {
 			margin: 0.5rem 0;
+		}
+		h3.fineprint {
+			font-size: 0.8rem;
 		}
 		.slickInput {
 		    font-size: 1.5rem;
@@ -338,17 +339,15 @@
 		.radio-group {
 			height: 2.2rem;
 			border-radius: 8px;
-			border: 1px solid gray;
 			overflow: hidden;
 			display: inline-flex;
-			
 		}
 		.radio-group .radio-option {
 			height: 100%;
 			min-width: 2.2rem;
 			background-color: rgb(15, 112, 177);
-			border-left: 1px solid gray;
-			border-right: 1px solid gray;
+			border-left: 1px solid rgb(11, 71, 111);
+			border-right: 1px solid rgb(11, 71, 111);
 			display: inline-block;
 			font-size: 1.5rem;
 			line-height: calc(2.2rem - 4px);
@@ -358,6 +357,13 @@
 			user-select: none;
 			padding: 2px;
 		}
+		.radio-group .radioBox:first-child + .radio-option {
+			border-left: none;
+		}
+		.radio-group .radio-option:last-child {
+			border-right: none;
+		}
+		
 		.radio-group .radioBox[disabled] + .radio-option {
 			cursor: not-allowed;
 		}
@@ -616,23 +622,23 @@
 					</div>
 					<div class="page unloadedPage" id="finalizePage">
 						<div class="backdropHov">
-							<span class="descriptor">Los Altos Hacks - Fin</span>
+							<span class="descriptor">Los Altos Hacks - Finalize</span>
 							<div class="questionGroup focus">
-								<h3 class="slim-title" for="entry-mlhcode">I agree to the MLH Code of Conduct</h3>
+								<h3 class="slim-title fineprint" for="entry-mlhcode">I agree to the MLH Code of Conduct</h3>
 								<input class="termsCheck" type="checkbox" id="entry-mlhcode" value="accepted">
 							    <label for="entry-mlhcode"></label>
 							</div>
 							<div class="questionGroup focus">
-								<h3 class="slim-title" for="entry-mlhterms">I agree to the terms of both the MLH Contest Terms and Conditions (1) and the MLH Privacy Policy (2). Please note that you may receive pre and post-event informational e-mails and occasional messages about hackathons from MLH as per the MLH Privacy Policy.</h3>
+								<h3 class="slim-title fineprint" for="entry-mlhterms">I agree to the terms of both the MLH Contest Terms and Conditions (1) and the MLH Privacy Policy (2). Please note that you may receive pre and post-event informational e-mails and occasional messages about hackathons from MLH as per the MLH Privacy Policy.</h3>
 								<input class="termsCheck" type="checkbox" id="entry-mlhterms" value="accepted">
 							    <label for="entry-mlhterms"></label>
 							</div>
 							<div class="questionGroup focus">
-								<h3 class="slim-title" for="entry-lahpriv">By submitting your application, you acknowledge and agree that the organization behind Los Altos Hacks III (Youth Leadership Incubator Inc dba Hack+) may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact legal@hackplus.io for any clarifications, questions, or requests regarding this agreement.</h3>
+								<h3 class="slim-title fineprint" for="entry-lahpriv">By submitting your application, you acknowledge and agree that the organization behind Los Altos Hacks III (Youth Leadership Incubator Inc dba Hack+) may share your name and email address with event partners in order to improve your experience at the Los Altos Hacks event. A list of organizations to whom your name and email address may be shared is available upon request; contact legal@hackplus.io for any clarifications, questions, or requests regarding this agreement.</h3>
 								<input class="termsCheck" type="checkbox" id="entry-lahpriv" value="accepted">
 							    <label for="entry-lahpriv"></label>
 							</div>
-							<button class="lahBtn disabled" id="sendReg"><span class="buttonLabel">All done &rsaquo;</span></button>
+							<button class="lahBtn disabled" id="sendReg"><span class="buttonLabel">Submit &rsaquo;</span></button>
 						</div>
 					</div>
 				</div>
