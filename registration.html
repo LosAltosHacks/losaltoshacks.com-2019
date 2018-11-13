@@ -230,9 +230,16 @@
 		    border-bottom: 0px solid white;
 			transition: border-bottom 0.3s;
 		}
+		.slickInput.invalidInp {
+		    border-bottom: 2px solid red;
+		}
 		.slickInput:focus {
 			outline: none;
 		    border-bottom: 2px solid white;
+		}
+		.slickInput.invalidInp:focus {
+			outline: none;
+		    border-bottom: 2px solid red;
 		}
 		.slickInput::placeholder {
 			color: rgba(255, 255, 255, 0.4);
@@ -287,10 +294,17 @@
 			font-size: 15px;
 		}
 		.badge #badge-email {
-		    top: 17.5%;
+		    top: 18.1%;
 		    left: 50px;
 		    font-size: 15px;
 		    font-weight: normal;
+			max-width: 140.66px;
+			text-overflow: ellipsis;
+		    white-space: nowrap;
+		    overflow: hidden;
+			color: #464646;
+			font-size: 12px;
+			
 		}
 		.badge #badge-phone {
 		    top: 26.5%;
@@ -412,7 +426,7 @@
 		  left: .22em;
 		  font-size: 1.3em;
 		  line-height: 0.8;
-		  color: #09ad7e;
+		  color: #0089c8;
 		  transition: all .2s;
 		  font-family: system-ui;
 		}
@@ -518,7 +532,7 @@
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-email">What is your email address?</h3>
-								<input class="slickInput" type="text" placeholder="Enter your email here" id="entry-email">
+								<input class="slickInput email" type="text" placeholder="Enter your email here" id="entry-email">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-phone">What is your phone number?</h3>
@@ -531,7 +545,7 @@
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-phone">What is your parent's email?</h3>
-								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-parent-email">
+								<input class="slickInput email" type="text" placeholder="Type your answer here..." id="entry-parent-email">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-shirtsize">What is your t-shirt size?</h3>
@@ -561,12 +575,12 @@
 						<div class="backdropHov">
 							<span class="descriptor">Los Altos Hacks - 3/3</span>
 							<div class="questionGroup">
-								<h3 class="slim-title" for="entry-linkedin">What is your Linkedin? (optional)</h3>
-								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-linkedin">
+								<h3 class="slim-title" for="entry-linkedin">What is your Linkedin Profile URL? (optional)</h3>
+								<input class="slickInput social" type="text" placeholder="https://linkedin.com/in/johnsmith" id="entry-linkedin">
 							</div>
 							<div class="questionGroup">
-								<h3 class="slim-title" for="entry-github">What is your Github? (optional)</h3>
-								<input class="slickInput" type="text" placeholder="Enter your email here" id="entry-github">
+								<h3 class="slim-title" for="entry-github">What is your Github URL? (optional)</h3>
+								<input class="slickInput social" type="text" placeholder="https://github.com/losaltoshacks" id="entry-github">
 							</div>
 							<div class="questionGroup focus">
 								<h3 class="slim-title" for="entry-attendednum">How many hackathons have you attended?</h3>
@@ -681,8 +695,7 @@
 					}
 				}
 			}
-			
-			var first = $('#entry-first').val();
+			var first = $('#entry-first').val().trim();
 			var last = $('#entry-last').val().trim();
 			var age = $('#entry-age').val().trim();
 			var school = $('#entry-school').val().trim();
@@ -725,8 +738,27 @@
 			var parname = $('#entry-parent-name').val().trim();
 			var paremail = $('#entry-parent-email').val().trim();
 			var tshirt = $('#entry-shirtsize .radioBox:checked').val();
+			if($(this).is('.slickInput.email')) {
+				var value = $(this).val();
+				var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+				if(!result) {
+					var $parentHolster = $(this).closest('.questionGroup');
+					$(this).addClass('invalidInp');
+				}
+				else {
+					$(this).removeClass('invalidInp');
+				}
+			}
 			
-			$('#badge-email').text(email);
+			
+			$('#badge-email').text(email).prop('title', email);
+			//detect clipping
+			if($('#badge-email')[0].offsetWidth < $('#badge-email')[0].scrollWidth) {
+				//since we clipped, lets try first to actually truncate this
+//				$('#badge-email').text(email.substring(0, email.indexOf("@")) + email.substring(email.indexOf("@"), email.indexOf("@")+4) + "..." + email.substr(-6));
+		        $('#badge-email').text(email.substr(0,6) + '...' + email.substr(email.length-6));
+				
+			}
 			$('#badge-phone').text(phone);
 			$('#badge-parent-name').text(parname);
 			$('#badge-parent-email').text(paremail);
@@ -762,8 +794,28 @@
 			//
 			var github = $('#entry-github').val().trim();
 			var attended = $('#entry-attendednum .radioBox:checked').val();
-			$('#badge-linkedin').text(linkedin);
-			$('#badge-github').text(github);
+			
+			if($(this).is('.slickInput.social')) {
+				var value = $(this).val();
+				var result = (value.length > 0 && (value.indexOf('linkedin.com/in/') != -1 || value.indexOf('github.com/') != -1));
+				if(!result) {
+					var $parentHolster = $(this).closest('.questionGroup');
+					$(this).addClass('invalidInp');
+				}
+				else {
+					$(this).removeClass('invalidInp');
+				}
+			}
+			if(linkedin.length > 0) {
+				if(linkedin.substr(-9, 1) == "-") {
+					//no profile url
+					$('#badge-linkedin').text( ($('#entry-first').val().trim() + $('#entry-last').val().trim()).toLowerCase());
+				} else {
+					$('#badge-linkedin').text(linkedin.substring(linkedin.indexOf('/in/')+4));
+				}
+			}
+			if(github.length > 0)
+				$('#badge-github').text(github.substring(github.indexOf('.com/')+5));
 			$('#badge-exp').text(attended);
 				
 			if($('#entry-attendednum .radioBox:checked').val().trim() != "")
@@ -773,7 +825,7 @@
 		});
 		
 		$('#contactPageBtn').click(function() {
-			
+			if($(this).is('.disabled')) return;
 			var age = $('#entry-age').val().trim();
 			if(parseInt(age) >= 18) {
 				$('#entry-parent-name').val('n/a').prop('disabled', true);
@@ -788,12 +840,14 @@
 			$('#contactPage').removeClass('unloadedPage');
 			$('#contactPage .slickInput')[0].focus();
 		});
-		$('#hackerBGBtn').click(function() {			
+		$('#hackerBGBtn').click(function() {
+			if($(this).is('.disabled')) return;
 			$('#contactPage').addClass('pullOffscreen');
 			$('#hackerDetailsPage').removeClass('unloadedPage');
 			$('#hackerDetailsPage .slickInput')[0].focus();
 		});
 		$('#finReg').click(function() {
+			if($(this).is('.disabled')) return;
 			$('#hackerDetailsPage').addClass('pullOffscreen');
 			$('#finalizePage').removeClass('unloadedPage');
 			$('#confirmBadge').fadeTo(300, 1);
@@ -803,6 +857,7 @@
 			$('.badge').toggleClass('flip');
 		});
 		$('#sendReg').click(function() {
+			if($(this).is('.disabled')) return;
 			$('.badge').removeClass('flip');
 			$('#regDone').fadeIn();
 			$('#confirmBadge').fadeOut();
