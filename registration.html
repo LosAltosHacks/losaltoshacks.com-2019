@@ -436,6 +436,25 @@
 		input[type="checkbox"]:checked + label:after {
 		  opacity: 1;
 		}
+		.selectSplit {
+			display: flex;
+			align-items: center;
+		}
+		.selectSplit > .slickSelect {
+			display: inline-block;
+			flex-basis: 10%;
+			height: calc(1.5rem + 10px);
+			background-color: rgb(15, 112, 177);
+		    border: 1px solid rgb(11, 71, 111);
+		    color: white;
+		    font-size: 1.2rem;
+		}
+		.selectSplit > .slickInput {
+			flex-basis: 90%;
+		}
+		.selectSplit > .slickInput.hidden {
+			visibility: hidden;
+		}
 		</style>
 </head>
 
@@ -462,7 +481,7 @@
 						<span				  id="badge-github"></span>
 					</div>
 				</div>
-				<a href="#" id="confirmBadge"><h3>Confirm Your Information!</h3></a>
+				<a href="#" id="confirmBadge"><h3>Click to confirm your information!</h3></a>
 				<div id="regDone" class="text-center">
 					<p>You've completed the registration process. You should have an email to confirm this process.</p>
 					<button class="lahBtn force-center" id="backHome"><span class="buttonLabel">Head Back Home &rsaquo;</span></button>
@@ -526,18 +545,25 @@
 						<div class="backdropHov">
 							<span class="descriptor">Los Altos Hacks - 2/3</span>
 							<p class="text-muted">The information from further questions will be used internally only and not distributed or printed onto your physical badge.</p>
-							<div class="questionGroup">
+							<div class="questionGroup focus">
 								<h3 class="slim-title" for="entry-gender">What is your gender?</h3>
-								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-gender">
+								<div class="selectSplit">
+									<select class="slickSelect" id="entry-genderSelect">
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+										<option value="Other">Other</option>
+										<option value="decline">Decline to State</option>
+									</select>
+									<input class="slickInput hidden" type="text" placeholder="Type your answer here..." id="entry-gender">
+								</div>
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-email">What is your email address?</h3>
 								<input class="slickInput email" type="text" placeholder="Enter your email here" id="entry-email">
 							</div>
 							<div class="questionGroup">
-								<h3 class="slim-title" for="entry-phone">What is your phone number?</h3>
-								<p>If you do not have a phone number, please put your parent's phone number and write what their relation is to you. (example: "650-932-3921 - Mother")</p>
-								<input class="slickInput" type="text" placeholder="Type your answer here..." id="entry-phone">
+								<h3 class="slim-title" for="entry-phone">What is your phone number? (optional)</h3>
+								<input class="slickInput optional" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="entry-phone">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-phone">What is your parent's name?</h3>
@@ -546,6 +572,10 @@
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-phone">What is your parent's email?</h3>
 								<input class="slickInput email" type="text" placeholder="Type your answer here..." id="entry-parent-email">
+							</div>
+							<div class="questionGroup">
+								<h3 class="slim-title" for="entry-phone">What is your parent's phone number? (optional)</h3>
+								<input class="slickInput optional" type="text" data-mask="phone-us" placeholder="(123) 456-7890" id="entry-parent-phone">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-shirtsize">What is your t-shirt size?</h3>
@@ -576,11 +606,11 @@
 							<span class="descriptor">Los Altos Hacks - 3/3</span>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-linkedin">What is your Linkedin Profile URL? (optional)</h3>
-								<input class="slickInput social" type="text" placeholder="https://linkedin.com/in/johnsmith" id="entry-linkedin">
+								<input class="slickInput social optional" type="text" placeholder="https://linkedin.com/in/johnsmith" id="entry-linkedin">
 							</div>
 							<div class="questionGroup">
 								<h3 class="slim-title" for="entry-github">What is your Github URL? (optional)</h3>
-								<input class="slickInput social" type="text" placeholder="https://github.com/losaltoshacks" id="entry-github">
+								<input class="slickInput social optional" type="text" placeholder="https://github.com/losaltoshacks" id="entry-github">
 							</div>
 							<div class="questionGroup focus">
 								<h3 class="slim-title" for="entry-attendednum">How many hackathons have you attended?</h3>
@@ -660,7 +690,12 @@
 		</section>
 	</main>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js" integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U=" crossorigin="anonymous"></script>
 	<script>
+        $('input[data-mask]').each(function() {
+          var input = $(this);
+          input.setMask(input.data('mask'));
+        });
 		var screenHeight = $(window).height();
 		var badgeHeight = $('.badge').height();
 		$('.badge').css('margin-top', (screenHeight/2 - badgeHeight/2)+'px');
@@ -732,11 +767,23 @@
 				$('#entry-grade .radioBox').attr('disabled', '');
 			}
 		});
-		$('.slickInput, .radioBox', '#contactPage').on('input change', function() {
+		$('.slickInput, .radioBox, .slickSelect', '#contactPage').on('input change', function() {
+			if($(this).is('.slickSelect')) {
+				//we're really just shadow-inputting into #entry-gender
+				var value = $(this).val();
+				if(value == "Other") {
+					//show the value field
+					$('#entry-gender').removeClass('hidden').val("");
+				} else {
+					$('#entry-gender').val(value).addClass('hidden');
+				}
+ 			}
+			var gender = $('#entry-gender').val().trim();
 			var email = $('#entry-email').val().trim();
 			var phone = $('#entry-phone').val().trim();
 			var parname = $('#entry-parent-name').val().trim();
 			var paremail = $('#entry-parent-email').val().trim();
+			var parphone = $('#entry-parent-phone').val().trim();
 			var tshirt = $('#entry-shirtsize .radioBox:checked').val();
 			if($(this).is('.slickInput.email')) {
 				var value = $(this).val();
@@ -749,17 +796,27 @@
 					$(this).removeClass('invalidInp');
 				}
 			}
-			
+			if($(this).is('.slickInput.phone')) {
+				var value = $(this).val();
+				var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+				if(!result) {
+					var $parentHolster = $(this).closest('.questionGroup');
+					$(this).addClass('invalidInp');
+				}
+				else {
+					$(this).removeClass('invalidInp');
+				}
+			}
 			
 			$('#badge-email').text(email).prop('title', email);
 			//detect clipping
 			if($('#badge-email')[0].offsetWidth < $('#badge-email')[0].scrollWidth) {
-				//since we clipped, lets try first to actually truncate this
-//				$('#badge-email').text(email.substring(0, email.indexOf("@")) + email.substring(email.indexOf("@"), email.indexOf("@")+4) + "..." + email.substr(-6));
 		        $('#badge-email').text(email.substr(0,6) + '...' + email.substr(email.length-6));
-				
 			}
-			$('#badge-phone').text(phone);
+			if(phone.length == 0 && parphone.length != 0 && parphone != "n/a")
+				$('#badge-phone').text(parphone);
+			else
+				$('#badge-phone').text(phone);
 			$('#badge-parent-name').text(parname);
 			$('#badge-parent-email').text(paremail);
 			$('#badge-shirt').text(tshirt);
@@ -767,6 +824,7 @@
 			var allFilled = true;
 			$('.slickInput', '#contactPage').each(function() {
 				if($(this).val().trim() == "") {
+					if($(this).is('.optional')) return true;
 					allFilled = false;
 					return false;
 				}
@@ -787,7 +845,6 @@
 			}
 			
 		});
-		
 		$('.slickInput, .radioBox', '#hackerDetailsPage').on('input change', function() {
 			//https://www.linkedin.com/in/somename or https://www.linkedin.com/in/first-last-12345678
 			var linkedin = $('#entry-linkedin').val().trim();
@@ -830,9 +887,13 @@
 			if(parseInt(age) >= 18) {
 				$('#entry-parent-name').val('n/a').prop('disabled', true);
 				$('#entry-parent-email').val('n/a').prop('disabled', true);
+				$('#entry-parent-phone').val('n/a').prop('disabled', true);
+				$('#badge-parent-name').text('n/a');
+				$('#badge-parent-email').text('n/a');
 			} else {
 				$('#entry-parent-name').prop('disabled', false);
 				$('#entry-parent-email').prop('disabled', false);
+				$('#entry-parent-phone').prop('disabled', false);
 			}
 			
 			$('#namePage').addClass('pullOffscreen');
