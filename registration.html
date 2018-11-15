@@ -128,11 +128,15 @@
 			flex-direction: column;
 			overflow: hidden;
 		}
+		::-webkit-scrollbar {
+			background: none;
+		}
 		.reg-form .page {
 			transition: max-height 0.8s, transform 1s, opacity 1s;
 			max-height: 100vh;
 			width: 100%;
-			overflow: hidden;
+			overflow-x: hidden;
+			overflow-y: scroll;
 		}
 		.reg-form .page.unloadedPage {
 			max-height: 0;
@@ -142,7 +146,8 @@
 			opacity: 0;
 		}
 		.head-logo {
-			width: 60%;
+			width: 32em;
+			max-width: 100%;
 			margin: 0 auto;
 		}
 		p.text-muted {
@@ -455,6 +460,43 @@
 		.selectSplit > .slickInput.hidden {
 			visibility: hidden;
 		}
+		/* responsive build kicks in below 700px width */
+		@media (max-width: 700px) {
+			#top {
+				flex-direction: column;
+			}
+			.reg-form {
+				width: 100vw;
+				overflow-y: scroll;
+				max-height: 85vh;
+			}
+			.badge-sect {
+				transition: width 1s;
+				width:0;
+				overflow: hidden;
+				padding:0;s
+				flex-basis: 0%;
+			}
+			.gradient-drop {
+				background: none;
+				background-color: #3088c3 !important;
+				transition: none;
+			}
+			.field-sect {
+				transition: none;
+			}
+		}
+		/* pad for topbar on ios */
+		@supports (-webkit-overflow-scrolling: touch) {
+			body {
+				padding-top: 80px;
+				padding-bottom: 80px;
+			}
+			.gradient-drop {
+				height: 110vh;
+			}
+		}
+		
 		</style>
 </head>
 
@@ -549,6 +591,7 @@
 								<h3 class="slim-title" for="entry-gender">What is your gender?</h3>
 								<div class="selectSplit">
 									<select class="slickSelect" id="entry-genderSelect">
+										<option value="select" selected disabled>Select</option>
 										<option value="Male">Male</option>
 										<option value="Female">Female</option>
 										<option value="Other">Other</option>
@@ -637,27 +680,7 @@
 									</label>
 								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-5" value="5">
 									<label class="radio-option" for="entry-attendednum-4">
-										<span class="radio-title">5</span>
-									</label>
-								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-6" value="6">
-									<label class="radio-option" for="entry-attendednum-6">
-										<span class="radio-title">6</span>
-									</label>
-								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-7" value="7">
-									<label class="radio-option" for="entry-attendednum-7">
-										<span class="radio-title">7</span>
-									</label>
-								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-8" value="8">
-									<label class="radio-option" for="entry-attendednum-8">
-										<span class="radio-title">8</span>
-									</label>
-								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-9" value="9">
-									<label class="radio-option" for="entry-attendednum-9">
-										<span class="radio-title">9</span>
-									</label>
-								    <input class="radioBox" type="radio" name="entry-attendednum" id="entry-attendednum-10" value="10+">
-									<label class="radio-option" for="entry-attendednum-10">
-										<span class="radio-title">10+</span>
+										<span class="radio-title">5+</span>
 									</label>
 								</div>
 							</div>
@@ -696,13 +719,33 @@
           var input = $(this);
           input.setMask(input.data('mask'));
         });
-		var screenHeight = $(window).height();
-		var badgeHeight = $('.badge').height();
-		$('.badge').css('margin-top', (screenHeight/2 - badgeHeight/2)+'px');
-		$('.gradient-drop').css('opacity', 1);
-		setTimeout(function() {
+		var smallui = false;
+		if($(window).width() > 700) {
+			var screenHeight = $(window).height();
+			var badgeHeight = $('.badge').height();
+			$('.badge').css('margin-top', (screenHeight/2 - badgeHeight/2)+'px');
+			$('.gradient-drop').css('opacity', 1);
+			setTimeout(function() {
+				$('.field-sect').addClass('open');
+			}, 1500)
+		} else {
+			redrawWindow();
+		}
+		$(window).resize(function() {
+			redrawWindow();
+		});
+		function redrawWindow() {
+			if($(window).width() <= 700)
+				smallui = true;
+			else
+				smallui = false;
+			
+			var screenHeight = $(window).height();
+			var badgeHeight = $('.badge').height();
+			$('.badge').css('margin-top', (screenHeight/2 - badgeHeight/2)+'px');
+			$('.gradient-drop').css('opacity', 1);
 			$('.field-sect').addClass('open');
-		}, 1500)
+		}
 		$('#welcomeProgress').click(function() {
 			$('#welcomePage').addClass('pullOffscreen');
 			$('#namePage').removeClass('unloadedPage');
@@ -919,6 +962,15 @@
 		});
 		$('#sendReg').click(function() {
 			if($(this).is('.disabled')) return;
+			if(smallui) {
+				$('#confirmBadge').fadeOut();
+				$('#regDone').fadeIn();
+				$('.field-sect').fadeOut();
+				$('.badge').fadeIn();
+				$('.badge').removeClass('flip');
+				$('.badge-sect').css('width', '100vw').css('flex-basis', 'auto');
+				return;
+			}
 			$('.badge').removeClass('flip');
 			$('#regDone').fadeIn();
 			$('#confirmBadge').fadeOut();
