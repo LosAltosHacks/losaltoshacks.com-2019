@@ -131,6 +131,9 @@
 		::-webkit-scrollbar {
 			background: none;
 		}
+		::-webkit-scrollbar-track {
+			box-shadow: none;
+		}
 		.reg-form .page {
 			transition: max-height 0.8s, transform 1s, opacity 1s;
 			max-height: 100vh;
@@ -715,10 +718,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js" integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U=" crossorigin="anonymous"></script>
 	<script>
-        $('input[data-mask]').each(function() {
-          var input = $(this);
-          input.setMask(input.data('mask'));
-        });
+		$(function() {
+	        $('input[data-mask]').each(function() {
+	          var input = $(this);
+	          input.setMask(input.data('mask'));
+	        });
+		})
 		var smallui = false;
 		if($(window).width() > 700) {
 			var screenHeight = $(window).height();
