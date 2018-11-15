@@ -138,7 +138,7 @@ p.text-muted {
     text-transform: uppercase;
     font-size: 1.2rem;
     font-weight: bolder;
-	display: block;
+		display: block;
 	cursor: pointer;
 	box-shadow: 0 0 0em rgba(255, 255, 255, 0.0);
 	opacity: 0.8;
@@ -147,6 +147,16 @@ p.text-muted {
 }
 .lahBtn > .buttonLabel {
 	color: white;
+}
+.lahBtn.goBack {
+	font-size: 1rem;
+	line-height: 1.2rem;
+	vertical-align: bottom;
+	display: inline-block;
+	margin-right: 5px;
+}
+.lahBtn.goBack + .lahBtn {
+	display: inline-block;
 }
 .lahBtn:hover {
 	opacity: 1;

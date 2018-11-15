@@ -61,6 +61,10 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
 	first = first.charAt(0).toUpperCase() + first.slice(1);
 	last = last.charAt(0).toUpperCase() + last.slice(1);
 	$('#bdg-name').text(first + " " + last);
+	if($('#bdg-name').width() > $('.badge').width()) {
+		//truncate
+		$('#bdg-name').text(first.charAt(0) + ". " + last);
+	}
 	var ageAddon = (age > 0) ? " ("+age+")" : "";
 	if(school != "")
 		$('#bdg-school').text(school.match(/\b(\w)/g).join('').toUpperCase());
@@ -243,6 +247,13 @@ $('#contactPageBtn').click(function() {
 	$(window).scrollTop(0);
 	$('#contactPage .slInp')[0].focus();
 });
+$('#hackerBGBack').click(function() {
+	$('#namePage').removeClass('unloadedPage').removeClass('pullOffscreen');;
+	$('#contactPage').addClass('unloadedPage')
+	$('.badge').removeClass('flip');
+	$('#namePage .slInp')[0].focus();
+});
+
 $('#hackerBGBtn').click(function() {
 	if($(this).is('.disabled')) return;
 	$('#contactPage').addClass('pullOffscreen');
@@ -250,6 +261,11 @@ $('#hackerBGBtn').click(function() {
 	$(window).scrollTop(0);
 	$('#HDPage .slInp')[0].focus();
 });
+$('#finRegBack').click(function() {
+	$('#contactPage').removeClass('unloadedPage').removeClass('pullOffscreen');;
+	$('#HDPage').addClass('unloadedPage')
+	$('#contactPage .slInp')[0].focus();
+})
 $('#finReg').click(function() {
 	if($(this).is('.disabled')) return;
 	$('#HDPage').addClass('pullOffscreen');
@@ -261,6 +277,11 @@ $('#confirmBadge').click(function(e) {
 	e.preventDefault();
 	$('.badge').toggleClass('flip');
 });
+$('#sendRegBack').click(function() {
+	$('#HDPage').removeClass('unloadedPage').removeClass('pullOffscreen');;
+	$('#finalizePage').addClass('unloadedPage')
+	$('#confirmBadge').fadeTo(300, 0);
+})
 $('#sendReg').click(function() {
 	if($(this).is('.disabled')) return;
 	if(smallui) {
