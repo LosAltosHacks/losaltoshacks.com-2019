@@ -1,3 +1,5 @@
+var lah_api = "https://api.losaltoshacks.com";
+
 $(function() {
     $('input[data-mask]').each(function() {
       var input = $(this);
@@ -284,19 +286,53 @@ $('#sendRegBack').click(function() {
 })
 $('#sendReg').click(function() {
 	if($(this).is('.disabled')) return;
-	if(smallui) {
-		$('#confirmBadge').fadeOut();
-		$('#regDone').fadeIn();
-		$('.field-sect').fadeOut();
-		$('.badge').fadeIn();
-		$('.badge').removeClass('flip');
-		$('.bdg-sect').css('width', '100vw').css('flex-basis', 'auto');
-		return;
+	$(this).prop('disabled', true).addClass('disabled');
+	var db = {};
+	db['first_name'] = $('#en-first').val().trim();
+	db['surname'] = $('#en-last').val().trim();
+	db['email'] = $('#en-email').val().trim();
+	db['age'] = parseInt($('#en-age').val().trim());
+	db['school'] = $('#en-school').val().trim();
+	db['grade'] = parseInt($('#en-grade .radioBox:checked').val());
+	if($('#en-phone').val().trim().length == 0)
+		db['student_phone_number'] = $('#en-par-phone').val().trim();
+	else
+		db['student_phone_number'] = $('#en-phone').val().trim();
+	db['gender'] = $('#en-gender').val().trim();
+	db['tshirt_size'] = $('#en-shirtsize .radioBox:checked').val();
+	db['previous_hackathons'] = $('#en-attendednum .radioBox:checked').val();
+	
+	if(db['age'] < 18) {
+		db['guardian_name'] = $('#en-par-name').val().trim();
+		db['guardian_email'] = $('#en-par-email').val().trim();
+		db['guardian_phone_number'] = $('#en-par-phone').val().trim();
 	}
-	$('.badge').removeClass('flip');
-	$('#regDone').fadeIn();
-	$('#confirmBadge').fadeOut();
-	$('.field-sect').removeClass('open');
+	if($('#en-github').val().trim().length != 0)
+		db['github_username'] = $('#en-github').val().trim();
+	if($('#en-linkedin').val().trim().length != 0)
+		db['linkedin_profile'] = $('#en-linkedin').val().trim();
+	if($('#en-allergies').val().trim().length != 0)
+		db['dietary_restrictions'] = $('#en-allergies').val().trim();
+		
+	$.post(lah_api+'/registration/v1/signup', db).done(function() {
+		if(smallui) {
+			$('#confirmBadge').fadeOut();
+			$('#regDone').fadeIn();
+			$('.field-sect').fadeOut();
+			$('.badge').fadeIn();
+			$('.badge').removeClass('flip');
+			$('.bdg-sect').css('width', '100vw').css('flex-basis', 'auto');
+			return;
+		}
+	
+	
+		$('.badge').removeClass('flip');
+		$('#regDone').fadeIn();
+		$('#confirmBadge').fadeOut();
+		$('.field-sect').removeClass('open');
+	}).fail(function(msg) {
+		//error handling
+	})
 });
 $('#backHome').click(function() {
 	window.location.href = "/";
