@@ -14,7 +14,7 @@ function initSideList() {
   scheduleData.map(function (event, i) {
     schedList.insertAdjacentHTML("beforeend",'<tr id="listItem'+i+'" data-linkTo="'+i+'" class="scheduleLink"><td>'+event.time+'</td><td>'+event.name+'</td></tr>');
   });
-  var formattedDay = moment(eventDay, "MMMM DD").format("dddd");
+  var formattedDay = moment(eventDay + " 2019", "MMMM DD YYYY").format("dddd");
   $("#schedDayLarge").text(eventDay + " - " + formattedDay);
 }
 initSideList();
@@ -29,7 +29,7 @@ function initTracker() {
   closestEvent = {index : null, diff: null};
   for (var eventKey in scheduleData) {
   var event = scheduleData[eventKey];
-  var eventTime = moment(eventDay + " " + event.time, "MMMM DD hh:mm A");
+  var eventTime = moment(eventDay + " 2019" + " " + event.time , "MMMM DD YYYY hh:mm A");
   var now = moment();
   var diff = eventTime.diff(now);
   if (closestEvent.diff == null || closestEvent.diff > diff) {
@@ -61,16 +61,18 @@ function updateActiveEvent(key) {
   activeTracker[key] = true;
   displayDynamicSchedule();
 }
+var timeline_displayedEvents = [];
+
 function reInitSchedule() {
   //reinit tracker and sidelist.
-  initSideList();
+  timeline_displayedEvents = [];
   initTracker();
+  initSideList();
   displayDynamicSchedule();
 }
 
 
 //handle displaying the active event. 
-var timeline_displayedEvents = [];
 function displayDynamicSchedule() {
   //get the active schedule item
   var activeEvent = findActiveEvent();
@@ -87,13 +89,13 @@ function displayDynamicSchedule() {
 
   
   //change the timeline navigation buttons (the arrows)
-  var nextKey = scheduleData[(activeEvent.key * 1) + 1] ? (activeEvent.key * 1) + 1 : 0;
-  var prevKey = scheduleData[(activeEvent.key * 1) - 1] ? (activeEvent.key * 1) - 1 : scheduleData.length - 1;
+  var nextKey = scheduleData[(activeEvent.key * 1) + 1] ? (activeEvent.key * 1) + 1 : "null";
+  var prevKey = scheduleData[(activeEvent.key * 1) - 1] ? (activeEvent.key * 1) - 1 : "null";
   $('#schedIncrease').attr('data-linkTo',nextKey);
   $('#schedDecrease').attr('data-linkTo',prevKey);
   
   //change the day displayed
-  var formattedDay = moment(eventDay, "MMMM DD").format("dddd");
+  var formattedDay = moment(eventDay + " 2019", "MMMM DD YYYY").format("dddd");
   $("#schedDay").text(formattedDay);
   
   //display the new timeline. 
@@ -105,6 +107,7 @@ function displayDynamicSchedule() {
       break;
     }
   }
+  
   //if the element exists in the timeline list, don't recreate it. If not, create a new timeline. 
   if (!displayedEventsKey) {
     timeline_displayedEvents = [];
@@ -130,10 +133,48 @@ displayDynamicSchedule();
 //bind some event listeners. 
 $('#schedule').on('click','.scheduleLink',function(){
   var nextActiveEventKey = $(this).attr('data-linkTo');
+  var id = $(this).attr("id");
   if (nextActiveEventKey != "null") {
     updateActiveEvent(nextActiveEventKey);
   }
+  else {
+    if (id == "schedIncrease") {
+        if (dayKey == 0) {
+          dayKey = 1;
+          $("#toggleDay").html("View Saturday");
+          eventDay = days[dayKey];
+          scheduleData = Schedules[eventDay].sched;
+          reInitSchedule()
+        }
+    }
+    if (id == "schedDecrease") {
+        if (dayKey == 1) {
+          dayKey = 0;
+          $("#toggleDay").html("View Sunday");
+          eventDay = days[dayKey];
+          scheduleData = Schedules[eventDay].sched;
+          reInitSchedule();
+          updateActiveEvent(Schedules[eventDay].sched.length - 1)
+        }
+    }
+  }
+
+  hideAndShowButtons();
 });
+
+function hideAndShowButtons() {
+  if ($("#schedIncrease").attr('data-linkTo') == "null" && dayKey == 1) {
+    $("#schedIncrease").css("visibility", "hidden");
+  } else {
+    $("#schedIncrease").css("visibility", "visible");
+  }
+
+  if ($("#schedDecrease").attr('data-linkTo') == "null" && dayKey == 0) {
+    $("#schedDecrease").css("visibility", "hidden");
+  } else {
+    $("#schedDecrease").css("visibility", "visible");
+  }
+}
 
 $("#toggleDay").click(function(){
   if (dayKey == 0) {
@@ -146,5 +187,6 @@ $("#toggleDay").click(function(){
   }
   eventDay = days[dayKey];
   scheduleData = Schedules[eventDay].sched;
-  reInitSchedule()
+  reInitSchedule();
+  hideAndShowButtons();
 });

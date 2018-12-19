@@ -1,19 +1,9 @@
 :root {
-    --site-width: 45rem;
-    --side-padding: calc((100vw - var(--site-width)) / 2);
-    --nav-background-color: rgba(240, 245, 255, 0.9);
-    --nav-height: 3rem;
-
     --accent-color: #3fb2ff;
     --accent-hover-color: #34495e;
-
     --blue: #3fb2ff;
-    --orange: #f39c12;
-    --darkblue: #34495e;
-
+    --site-width: 45rem;
     --vw: 1vw;
-
-    color: rgba(0, 0, 0, 0.9);
     font-size: calc(12px + var(--vw));
     font-family: 'Poppins', 'Open Sans', sans-serif;
     text-align: center;
@@ -42,6 +32,9 @@ footer {
     flex-direction: column;
     justify-content: center;
 }
+  footer > div > p {
+    margin: 0 auto;
+  }
 
 p,
 h1,
@@ -376,15 +369,15 @@ h1.head-text {
 
 details {
   flex: 1 50%;
-  height: 100% !important;
   margin: 0 !important;
   padding-left: 1em;
   padding-right: 1em;
   position: relative;
+  width: 45rem;
 }
 
 details:not([open]) {
-	height: calc(1.2375em + 24.47px);
+  height: 3.3em;
 }
 
 summary {
@@ -415,6 +408,10 @@ summary:after {
     transform: translateX(-0.3536em) rotate(-45deg);
     transition: transform 0.3s;
     color: white;
+}
+
+summary h3 {
+    padding-right: 1em;
 }
 
 /* i hate safari just for the record */
@@ -450,19 +447,6 @@ details[open] > summary + * {
         opacity: 0
     }
 }
-/* this sadly isn't dynamic without js #csssucks */
-details:not([open]) {
-	/* height: calc(1.2375em + 24.47px); */
-}
-/* #schedule h3 {
-	margin-top: 1.75rem;
-}
-#schedule table {
-	width: 100%;
-}
-#schedule * + p {
-	font-size: 0.85em;
-} */
 
 #team {
     flex-direction: column;
@@ -823,7 +807,7 @@ footer a.link-group-item:hover {
 #schedule {
     text-align: left;
     color: white;
-    /* display: block; */
+    height: 100vh;
 }
 
 #event-name {
@@ -844,8 +828,13 @@ footer a.link-group-item:hover {
   font-weight: 700;
 }
 .schedHeader {
-  display: flex;
+  display: block;
+  text-align: center;
   flex-direction: row;
+}
+#schedDayLarge {
+  margin-bottom: 10px;
+  font-size: 110%;
 }
 .switchDay {
   margin-left: auto;
@@ -873,7 +862,7 @@ footer a.link-group-item:hover {
 }
 
 #details .detail {
-    margin: 0.5rem 0;
+    margin: 10px;
     display: table-row;
 }
 
@@ -926,7 +915,7 @@ footer a.link-group-item:hover {
 #schedule-panel {
     margin-left: auto;
     padding: 1rem;
-    max-width: 45%;
+    width: 40%;
     box-sizing: border-box;
     border-radius: 4px;
     height: 100%;
@@ -935,11 +924,21 @@ footer a.link-group-item:hover {
     background-color: rgba(0, 0, 0, .5);
     box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07);
 }
+.detail.location {
+  margin-top: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
 .schedVisHeader {
   margin-top: 20px;
   flex-direction:row;
   justify-content: space-between;
   align-items: center;
+}
+#schedLocation {
+  margin-left: 10px;
 }
 .navButtons {
   width: 100px;
@@ -975,6 +974,11 @@ footer a.link-group-item:hover {
 
 /* tablets + small screens */
 @media only screen and (max-width: 900px) {
+    #logo-main {
+        position: absolute;
+        top: 3rem;
+    }
+
     #logo-main img {
         width: 90%;
     }
@@ -986,6 +990,7 @@ footer a.link-group-item:hover {
 
     #schedule {
         flex-direction: column;
+        height: 100%;
     }
 
     #schedule-vis {
@@ -1021,7 +1026,7 @@ footer a.link-group-item:hover {
 }
 
 /* browser resize */
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 780px) {
   .faq-row {
     display: block;
     width: 45rem;
@@ -1031,6 +1036,26 @@ footer a.link-group-item:hover {
   details {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    width: unset;
+  }
+  details:not([open]) {
+    height: 4.4em;
+  }
+  #logo-main {
+    height: calc(100vh - 160px - 7.4rem);
+    display: flex;
+    flex-direction: column;
+  }
+  #logo-main > * {
+    padding: 1rem 0 0 0;
+    margin: 0;
+  }
+  #logo-main img {
+    flex-basis: 0;
+    min-height: 27vh;
+  }
+  .head-text {
+    font-size: 1.5rem !important;
   }
 }
 
@@ -1078,3 +1103,53 @@ footer a.link-group-item:hover {
         flex: 1 100%;
     }
 }
+
+@media only screen and (max-width: 350px) {
+  #nav-row {
+    justify-content: center;
+  }
+  #logo-main {
+    height: unset;
+    top: unset;
+  }
+    h1.head-text {
+      display: none;
+    }
+}
+
+/* Scrollbar Customization (Todo Later) */
+
+::-webkit-scrollbar {
+	width: 5px;
+	background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.6);
+	border-radius: 2.5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+/* device-specific bug fixes */
+/* iOS landscape bug */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) { 
+	#logo-main {
+		height: auto;
+	}
+}
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) { 
+	#logo-main {
+		height: auto;
+	}
+}
+	
