@@ -1,150 +1,45 @@
-<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<style>
-  * {
-    font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
-  }
-
-  body, html {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-  }
-    .wrapper {
-      display: table;
-    }
-    .wrapper > div {
-      width: 100%;
-      display: table-row;
-    }
-    #logo {
-      width: 35%;
-      margin: 20px auto;
-    }
-    .header > a > * {
-      display: block;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 2.5em;
-    }
-      .header > a {
-        text-decoration: none;
-        color: black;
-      }
-      .header > a img {
-        transition: transform .4s;
-      }
-      .header > a:hover img {
-        transform: translateY(-5px);
-      }
-  .content > div {
-    padding-top: 1px;
-    padding-bottom: 1px;
-  }
-    .content > div > * {
-      padding: 0 20px;
-    }
-    .content > div > h2 {
-      background-color: #34495e;
-      color: white;
-      padding: 10px;
-      letter-spacing: 1px;
-      font-weight: 100;
-    }
-    .content > div > p {
-      padding: 0 20px;
-    }
-    hr {
-      margin-top: 0;
-      margin-bottom: 0;
-      width: 98%;
-    }
-    .content h3 {
-      margin: 0;
-    }
-  .footer {
-    background-color: #34495e;
-  }
-    .footer > div {
-      color: white;
-      padding: 20px;
-      padding-bottom: 1px;
-    }
-    #footer-logo {
-      cursor: pointer;
-      display: inline-block;
-      position: absolute;
-    }
-      #footer-logo > img {
-        height: 2em;
-        transition: transform .4s;
-      }
-    #footer-logo:hover > img {
-      transform: scale(1.1);
-      filter: drop-shadow(0px 0px 2px #ffffff);
-    }
-    .footer a {
-      color: white;
-      text-decoration: none;
-      transition: color .3s, text-decoration .3s;
-    }
-      .footer a:hover {
-        color: #67C7EA;
-        text-decoration: underline;
-      }
-      .footer > div > p {
-        font-weight: 100;
-        font-size: 10px;
-        text-align: center;
-      }
-      .social-media {
-        text-align: center;
-        font-size: 2em;
-      }
-        .social-media > a {
-          cursor: pointer;
-          margin: 0 20px;
-          transition: color .4s;
-        }
-        .social-media > a:hover {
-          color: #67C7EA;
-        }
-        .social-media > a > i {
-          transition: transform .4s;
-        }
-        .social-media > a:hover > i {
-          transform: translateY(-5px);
-        }
-</style>
+<!DOCTYPE HTML>
 <html>
-  <body>
-    <div class="wrapper">
-      <div class="header">
-        <a href="https://www.losaltoshacks.com">
-          <img id="logo" src="https://www.losaltoshacks.com/images/Los-Altos-Hacks-Logo.svg">
-          <h1>Los Altos Hacks IV</h1>
-        </a>
-      </div>
-      <div class="content">
-        <div>
-          <h2>Header 1</h2>
-          <h3>Header 2</h3>
-          <hr align="center">
-          <p>Content</p>
-        </div>
-      </div>
-      <div class="footer">
-        <div>
-          <a href="https://www.losaltoshacks.com" id="footer-logo"><img src="https://www.losaltoshacks.com/images/Los-Altos-Hacks-Logo-Flat.svg"></a>
-          <div class="social-media">
-            <a href="https://www.facebook.com/losaltoshacks/"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/losaltoshacks/"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/losaltoshacks/"><i class="fab fa-instagram"></i></a>
-          </div>
-          <p>Copyright &copy; 2018 <a href="https://www.losaltoshacks.com">Los Altos Hacks</a>. All Rights Reserved.</p>
-        </div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:100,400,600');
+  </style>
+</head>
+<body style="padding:0;margin:0;font-family:'Poppins', sans-serif">
+  <div class="wrapper" style="display:table;width:100%">
+    <div class="header" style="width:100%;display:table-row">
+      <a href="https://www.losaltoshacks.com" style="text-decoration:none;display:inline-block;width:100%">
+        <img src="https://www.losaltoshacks.com/images/Los-Altos-Hacks-Logo.png" style="width:35%;height:100%;margin:20px auto;display:block">
+        <h1 style="margin:0 auto;text-align:center;font-size:2.5em;color:black">Los Altos Hacks IV</h1>
+      </a>
+    </div>
+    <div class="content" style="width:100%;display:table-row">
+      <div style="padding-top:1px;padding-bottom:1px">
+        <h2 style="padding: 0 20px;background-color:#34495e;color:white;padding:10px;font-weight:600;text-shadow:0 0 2.5px white">Registration is now open!</h2>
+        <h3 style="padding: 0 20px;margin:0">Header 2</h3>
+        <p style="padding: 0 20px">Content</p>
       </div>
     </div>
-  </body>
+    <div class="footer" style="width:100%;display:table-row;background-color:#34495e">
+      <div style="color:white;padding:20px;padding-bottom:1px;">
+        <a href="https://www.losaltoshacks.com" id="footer-logo" style="color:white;cursor:pointer;display:inline-block;position:absolute;text-decoration:none">
+          <img src="https://www.losaltoshacks.com/images/Los-Altos-Hacks-Logo-Flat.png" style="height:2em;filter:drop-shadow(0 0 5px white)">
+        </a>
+        <div class="social-media" style="color:white;text-align:center;font-size:2em;">
+          <a href="https://www.facebook.com/losaltoshacks/" style="color:white;text-decoration:none;display:inline-block;cursor:pointer;margin:0 10px">
+            <img style="width:30px;filter:invert(1)" src="https://www.losaltoshacks.com/images/facebook.png">
+          </a>
+          <a href="https://twitter.com/losaltoshacks/" style="color:white;text-decoration:none;display:inline-block;cursor:pointer;margin:0 10px">
+            <img style="width:30px;filter:invert(1)" src="https://www.losaltoshacks.com/images/twitter.png">
+          </a>
+          <a href="https://www.instagram.com/losaltoshacks/" style="color:white;text-decoration:none;display:inline-block;cursor:pointer;margin:0 10px">
+            <img style="width:30px;filter:invert(1)" src="https://www.losaltoshacks.com/images/instagram.png">
+          </a>
+        </div>
+        <p style="font-weight:100;font-size:10px;text-align:center">Copyright &copy; 2018 <a href="https://www.losaltoshacks.com" style="color:#67C7EA">Los Altos Hacks</a>. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
