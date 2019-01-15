@@ -44,7 +44,7 @@ a {
     transition: 0.3s;
 }
 a {
-    color: #3fb2ff;
+    color: rgb(255, 215, 152);
     font-weight: 600;
 }
 a:hover {
@@ -267,6 +267,13 @@ p.text-muted {
 #welcomePage > p {
 	margin-top: 80px;
 }
+#welcomeProgress {
+	opacity: 1;
+	transition: background-color .5s;
+}
+#welcomeProgress:hover {
+	background-color: rgb(115, 80, 27);
+}
 h3.slim-title {
 	margin: 0.5rem 0;
 }
@@ -453,7 +460,7 @@ input.slInp::-ms-input-placeholder {
 	cursor: not-allowed;
 }
 .radio-group .radioBox:checked + .radio-option, .radio-group .radioBox:not([disabled]) + .radio-option:hover {
-	background-color: rgb(11, 71, 111);
+	background-color: rgb(115, 80, 27);
 }
 .radio-group .radioBox {
 	display: none;
@@ -463,8 +470,9 @@ input.slInp::-ms-input-placeholder {
 	text-decoration: none;
 	color: white;
 	text-align: center;
-	opacity: 0;
 	display: block;
+	width: 80%;
+	margin: 0 auto;
 }
 	.bdg-sect #confirmBadget:hover {
 		box-shadow: none;

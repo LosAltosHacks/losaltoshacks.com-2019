@@ -10,6 +10,8 @@ $(document).ready(function() {
      'maxChars' : 0,
   });
 
+  $('#confirmBadge').hide();
+
   $('.qGrp').click(function(e) {
     var isFront = $(e.target).closest('.qGrp').hasClass('front-field')
     if (isFront) $('.badge').removeClass('flip');
@@ -190,7 +192,7 @@ function redrawWindow() {
 	$('.field-sect').addClass('open');
 }
 $('.qGrp').on('focus', '.slInp, .slSel, #en-language_tag', function() {
-  console.log('hi');
+
 	$(this).closest('.qGrp').addClass('focus');
 });
 $('.qGrp').on('blur', '.slInp, .slSel, #en-language_tag', function() {
@@ -307,6 +309,7 @@ $('#welcomeProgress').click(function() {
 	$('#infoPage').removeClass('unloadedPage');
 	$(window).scrollTop(0);
 	$('#infoPage .slInp')[0].focus();
+  $('#confirmBadge').show();
 });
 
 $('#confirmBadge').click(function(e) {
