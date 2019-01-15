@@ -310,6 +310,7 @@ $('#welcomeProgress').click(function() {
 	$(window).scrollTop(0);
 	$('#infoPage .slInp')[0].focus();
   $('#confirmBadge').show();
+  $('#infoPage').scrollTop(0);
 });
 
 $('#confirmBadge').click(function(e) {
