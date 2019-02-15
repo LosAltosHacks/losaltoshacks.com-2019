@@ -28,6 +28,11 @@ var Schedules = {
         location: "Workshop Area"
       },
       {
+        time: "1 PM",
+        name: "Build Your First Website Workshop",
+        location: "Workshop Area"
+      },
+      {
         time: "7 PM",
         name: "Dinner",
         location: "Food Area"
