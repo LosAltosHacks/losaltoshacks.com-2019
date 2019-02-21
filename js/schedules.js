@@ -59,12 +59,12 @@ var Schedules = {
       },
       {
         time: "7 AM",
-        name: "Breakfast",
+        name: "Submissions to Devpost Due",
         location: "Food Area"
       },
       {
         time: "8 AM",
-        name: "Submissions to Devpost;\nJudges Arrive",
+        name: "Breakfast;\nJudges Arrive",
         location: "Everywhere"
       },
       {
