@@ -29,7 +29,17 @@ var Schedules = {
       },
       {
         time: "1 PM",
-        name: "Build Your First Website Workshop",
+        name: "Build Your First Website Workshop with Hack Club",
+        location: "Workshop Area"
+      },  
+      {
+        time: "3:30 PM",
+        name: "The State of Cyber Security with Gigamon CTO Shehzad Merchant",
+        location: "Main Stage"
+      },
+      {
+        time: "4:30 PM",
+        name: "Machine Learning – Under the Hood with VMWare",
         location: "Workshop Area"
       },
       {
