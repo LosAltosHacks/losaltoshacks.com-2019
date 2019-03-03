@@ -959,6 +959,11 @@ footer a.link-group-item:hover {
     font-size: .7rem;
 }
 
+.schedWrapper {
+  margin-top: 10px;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
 #schedList {
     width: 100%;
 }
