@@ -68,7 +68,7 @@ var Schedules = {
         location: "Food Area"
       },
       {
-        time: "7 AM",
+        time: "7:30 AM",
         name: "Submissions to Devpost Due",
         location: "Everywhere"
       },
