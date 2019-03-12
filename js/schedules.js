@@ -19,13 +19,13 @@ var Schedules = {
       },
       {
         time: "12 PM",
-        name: "Lunch; Hacking Begins",
-        location: "Everywhere"
+        name: "Hacking Begins; Team Mixer",
+        location: "Everywhere; Workshop Area"
       },
       {
         time: "12:30 PM",
-        name: "Team Mixer",
-        location: "Workshop Area"
+        name: "Lunch",
+        location: "Food Area"
       },
       {
         time: "1 PM",
@@ -74,8 +74,13 @@ var Schedules = {
       },
       {
         time: "8 AM",
-        name: "Breakfast;\nJudges Arrive",
-        location: "Food Area, Everywhere"
+        name: "Breakfast; Judges Arrive",
+        location: "Food Area; Everywhere"
+      },
+      {
+        time: "8:30 AM",
+        name: "Hacking Ends",
+        location: "Everywhere"
       },
       {
         time: "9 AM",
