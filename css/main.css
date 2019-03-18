@@ -532,7 +532,7 @@ figure:hover img {
 
 .judges-wrapper {
     font-size: 0.85em;
-    align-items: start;
+    align-items: start !important;
 }
 
 .judges-wrapper figure figcaption:nth-of-type(2) {
