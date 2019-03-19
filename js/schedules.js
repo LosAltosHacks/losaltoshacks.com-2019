@@ -73,6 +73,11 @@ var Schedules = {
         location: "Food Area"
       },
       {
+        time: "1 AM",
+        name: "Smash Ultimate Tournament",
+        location: "Workshop Area"
+      },
+      {
         time: "7:30 AM",
         name: "Submissions to Devpost Due",
         location: "Everywhere"
