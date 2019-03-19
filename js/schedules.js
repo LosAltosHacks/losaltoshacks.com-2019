@@ -74,7 +74,7 @@ var Schedules = {
       },
       {
         time: "1 AM",
-        name: "Smash Ultimate Tournament",
+        name: "Super Smash Bros. Ultimate Tournament",
         location: "Workshop Area"
       },
       {
