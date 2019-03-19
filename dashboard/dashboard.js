@@ -34,13 +34,20 @@ dbEventsRef.orderBy("timePosted","desc").onSnapshot((docs) => {
       regularAnnouncements += announcementHTML;
     }
   });
-  console.log(regularAnnouncements);
   announcementsRef.innerHTML = pinnedAnnoucements + regularAnnouncements;
 });
 const modalBtn = document.getElementById('request-notifications');
-console.log(modalBtn);
+const closeModalPanel = document.getElementById('closeModalPanel');
+const closeModalBtn = document.getElementById('closeModalBtn');
 modalBtn.addEventListener('click',() => {
-  console.log("hi");
   const modal = document.getElementById("mapModal");
   modal.style = "visibility: visible; opacity: 1"
+})
+closeModalPanel.addEventListener('click',() => {
+  const modal = document.getElementById("mapModal");
+  modal.style = "visibility: hidden; opacity: 0"
+})
+closeModalBtn.addEventListener('click',() => {
+  const modal = document.getElementById("mapModal");
+  modal.style = "visibility: hidden; opacity: 0"
 })

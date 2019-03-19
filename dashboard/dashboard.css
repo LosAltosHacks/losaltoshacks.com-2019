@@ -328,3 +328,63 @@ button[disabled] {
 .initializer {
   display: flex;
 }
+#mapModal {
+  left: 0;
+  top: 0;
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s;
+}
+#mapModal .closeModal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0,0,0,.8);
+}
+#mapModal .container {
+  margin-top: 70px;
+  width: 100%;
+  max-height: calc(100% - 70px);
+  height: auto;
+  background-color: white;
+  position: relative;
+  padding: 40px 0px;
+}
+#mapModal .navigation {
+  position: absolute;
+  top: 0;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  background-color: black;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  z-index: 99;
+
+}
+#mapModal .navigation .title {
+  font-weight: 700;
+}
+#mapModal .navigation #closeModalBtn {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+}
+#mapModal .container img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
