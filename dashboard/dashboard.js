@@ -37,3 +37,10 @@ dbEventsRef.orderBy("timePosted","desc").onSnapshot((docs) => {
   console.log(regularAnnouncements);
   announcementsRef.innerHTML = pinnedAnnoucements + regularAnnouncements;
 });
+const modalBtn = document.getElementById('request-notifications');
+console.log(modalBtn);
+modalBtn.addEventListener('click',() => {
+  console.log("hi");
+  const modal = document.getElementById("mapModal");
+  modal.style = "visibility: visible; opacity: 1"
+})

@@ -328,31 +328,56 @@ button[disabled] {
 .initializer {
   display: flex;
 }
-#spotifyUsername {
-  display: block;
-  background: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid white;
-  font-size: 20px;
-  padding: 15px 0px;
-  color: white;
-}
-::placeholder  {
-  color: white;
-}
-#connectSpotify {
-  font-size: 15px;
-  font-weight: 500;
-  margin-left: 30px;
+#mapModal {
+  left: 0;
+  top: 0;
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  background-color: #3FB2FF;
-  border-radius: 4px;
-  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s;
 }
-/*iframe[id^=twitter] {
-	max-height: 60vh;
-}*/
+#mapModal .closeModal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0,0,0,.8);
+}
+#mapModal .container {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+#mapModal .navigation {
+  position: absolute;
+  top: 0;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  max-width: 500px;
+  box-sizing: border-box;
+  padding: 40px 40px;
+
+}
+#mapModal .navigation .title {
+  font-weight: 700;
+}
+#mapModal .navigation #closeModalBtn {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+}
+#mapModal .container img {
+  position: relative;
+  width: 100%;
+}
