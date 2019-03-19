@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 800 500" style="enable-background:new 0 0 800 500;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#494949;}
+	.st2{font-family:'Poppins-Regular';}
+	.st3{font-size:32px;}
+	.st4{fill:#2980B9;}
+	.st5{font-family:'Poppins-SemiBold';}
+	.st6{font-size:20.09px;}
+	.st7{fill:#3498DB;}
+	.st8{fill:#FF4848;}
+	.st9{font-family:'DIN-Medium';}
+	.st10{font-size:13px;}
+	.st11{font-family:'DIN-BlackAlternate';}
+	.st12{font-size:11px;}
+	.st13{fill:#FFCDCD;stroke:#FFA4A4;stroke-width:1.846;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:3;}
+	.st14{fill:#C69B00;}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" width="800" height="500"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="st0">
+		<g transform="matrix(1,0,0,1,411,433.225)">
+			<text transform="matrix(1 0 0 1 -28 32.4799)" class="st1 st2 st3">Juniper Aspiration Dome</text>
+		</g>
+		<g id="Logo">
+			<g>
+				<g transform="matrix(0.287,0,0,0.287,102.43,429.571)">
+					<text transform="matrix(3.4843 0 0 3.4843 -1.088850e-03 71.0484)" class="st4 st5 st6">LOS ALTOS</text>
+					<text transform="matrix(3.4843 0 0 3.4843 -1.088850e-03 143.6986)" class="st4 st5 st6">HACKS IV</text>
+				</g>
+			</g>
+			<g id="Los-Altos-Hacks-Logo">
+				<path class="st4" d="M25,460.4h31.4v14.3H39.3L25,460.4z"/>
+				<path class="st7" d="M25,431.9v28.5l14.3,14.3v-42.8L25,431.9z"/>
+				<path class="st4" d="M65.4,431.9l14.3,42.8H94l-14.3-42.8H65.4z"/>
+				<path class="st7" d="M51.2,474.7l14.3-42.8h14.3l-14.3,42.8H51.2z"/>
+			</g>
+		</g>
+		
+			<image style="overflow:visible;enable-background:new    ;" width="756" height="328" xlink:href="D58B0177.png"  transform="matrix(0.9989 0 0 0.9989 22.401 79.5)">
+		</image>
+		<g id="Legend">
+			<g transform="matrix(1,0,0,1,450.5,28)">
+				<text transform="matrix(1 0 0 1 0 13.195)" class="st8 st9 st10">Red Zone</text>
+				<text transform="matrix(1 0 0 1 0 26.968)" class="st8 st11 st12">off limits</text>
+			</g>
+			<rect x="431.5" y="30.3" vector-effect="non-scaling-stroke" class="st13" width="12" height="12"/>
+			<path class="st14" d="M287.3,34.8h26.4c1,0,1.8,0.8,1.8,1.8v1.4c0,1-0.8,1.8-1.8,1.8h-26.4c-1,0-1.8-0.8-1.8-1.8v-1.4
+				C285.5,35.6,286.3,34.8,287.3,34.8z"/>
+			<g transform="matrix(1,0,0,1,321.5,28)">
+				<text transform="matrix(1 0 0 1 0 13.195)" class="st14 st9 st10">Emergency Exit</text>
+				<text transform="matrix(1 0 0 1 0 26.968)" class="st14 st11 st12">alarm will sound</text>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
