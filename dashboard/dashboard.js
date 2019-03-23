@@ -51,3 +51,59 @@ closeModalBtn.addEventListener('click',() => {
   const modal = document.getElementById("mapModal");
   modal.style = "visibility: hidden; opacity: 0"
 })
+
+
+//schedules
+const updateScheduleCountDown = () => {
+  const day = Schedules[moment().format("MMMM D")];
+  const currEventNameElem = document.getElementById("current-event-name");
+  const nextEventNameElem = document.getElementById("next-event-name");
+  const nextEventCountdownElem = document.getElementById("next-event-time");
+  const scheduleParent = document.getElementById("schedule");
+  let currEvent = "No Curent event";
+  let currEventIndex = null;
+  let minDiff = null;
+  if (day) {
+    day.sched.map((event, i) => {
+      const localTime = moment(day.day + " " + event.time + " 2019");
+      const today = moment();
+      const diff = localTime.diff(today);
+      if (diff < 0) {
+        if (minDiff) {
+          if (Math.abs(diff) < Math.abs(minDiff)) {
+            minDiff = diff;
+            currEvent = event;
+            currEventIndex = i;
+          }
+        }
+        else {
+          minDiff = diff;
+          currEvent = event;
+          currEventIndex = i;
+        }
+      }
+    });
+    let nextEvent = day.sched[currEventIndex + 1];
+    let timeTillNextEvent = null;
+    if (!nextEvent) {
+      let nextDay = Schedules[moment().add(1,'days').format("MMMM D")];
+      if (nextDay) {
+        nextEvent = nextDay.sched[0];
+        timeTillNextEvent = moment().to(moment(nextDay.day + " " + nextEvent.time + " 2019"));
+      }
+    }
+    else {
+      timeTillNextEvent = moment().to(moment(day.day + " " + nextEvent.time + " 2019"));
+    }
+    currEventNameElem.innerHTML = currEvent.name;
+    nextEventNameElem.innerHTML = nextEvent.name;
+    nextEventCountdownElem.innerHTML = timeTillNextEvent;
+  }
+  else {
+    scheduleParent.style = "display : none";
+  }
+}
+updateScheduleCountDown();
+setInterval(function(){
+   updateScheduleCountDown();
+},6000);
