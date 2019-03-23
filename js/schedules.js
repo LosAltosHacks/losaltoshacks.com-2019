@@ -38,11 +38,6 @@ var Schedules = {
         location: "Main Stage"
       },
       {
-        time: "4:30 PM",
-        name: "Machine Learning – Under the Hood with VMWare",
-        location: "Workshop Area"
-      },
-      {
         time: "7 PM",
         name: "Dinner",
         location: "Food Area"
