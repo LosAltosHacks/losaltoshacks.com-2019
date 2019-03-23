@@ -388,3 +388,13 @@ button[disabled] {
   height: 100%;
   object-fit: contain;
 }
+.curr {
+  font-weight: 500;
+}
+.next {
+  font-size: 70%;
+  color: rgba(255,255,255,.7);
+}
+#next-event-name {
+  font-weight: 500;
+}
