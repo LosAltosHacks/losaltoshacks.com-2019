@@ -1,8 +1,7 @@
 var Schedules = {
-  "March 23" : {
+  "March 23": {
     day: "March 23",
-    sched: [
-      {
+    sched: [{
         time: "9:00 AM",
         name: "Check In",
         location: "Juniper Aspiration Dome"
@@ -31,11 +30,16 @@ var Schedules = {
         time: "1:00 PM",
         name: "Build Your First Website Workshop with Hack Club",
         location: "Workshop Area"
-      },  
+      },
       {
         time: "3:30 PM",
         name: "The State of Cyber Security with Gigamon CTO Shehzad Merchant",
         location: "Main Stage"
+      },
+      {
+        time: "6:00 PM",
+        name: "Landing Your First Tech Internship with Make School",
+        location: "Workshop Area"
       },
       {
         time: "7:00 PM",
@@ -54,13 +58,17 @@ var Schedules = {
       },
     ]
   },
-  "March 24" : {
+  "March 24": {
     day: "March 24",
-    sched: [
-      {
+    sched: [{
         time: "12:00 AM",
         name: "Midnight Surprise",
         location: "Food Area"
+      },
+      {
+        time: "1 AM",
+        name: "Super Smash Bros. Ultimate Tournament",
+        location: "Workshop Area"
       },
       {
         time: "7:30 AM",
