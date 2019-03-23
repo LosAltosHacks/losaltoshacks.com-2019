@@ -42,6 +42,11 @@ var Schedules = {
         location: "Workshop Area"
       },
       {
+        time: "6:00 PM",
+        name: "Landing Your First Tech Internship with Make School",
+        location: "Workshop Area"
+      },
+      {
         time: "7:00 PM",
         name: "Dinner",
         location: "Food Area"
