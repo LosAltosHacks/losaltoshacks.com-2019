@@ -388,6 +388,9 @@ button[disabled] {
   height: 100%;
   object-fit: contain;
 }
+#schedule {
+  font-size: 130%;
+}
 .curr {
   font-weight: 500;
 }
