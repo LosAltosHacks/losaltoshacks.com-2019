@@ -66,7 +66,7 @@ var Schedules = {
         location: "Food Area"
       },
       {
-        time: "1 AM",
+        time: "1:00 AM",
         name: "Super Smash Bros. Ultimate Tournament",
         location: "Workshop Area"
       },
