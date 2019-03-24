@@ -89,6 +89,7 @@ const updateScheduleCountDown = () => {
       let nextDay = Schedules[moment().add(1,'days').format("MMMM D")];
       if (nextDay) {
         nextEvent = nextDay.sched[0];
+      
         timeTillNextEvent = moment().to(moment(nextDay.day + " " + nextEvent.time + " 2019"));
       }
     }
