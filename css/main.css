@@ -152,10 +152,33 @@ section {
     position: relative;
 }
 
-section:nth-child(odd) {
+section:nth-child(even) {
     background-image: linear-gradient(40deg, #094268, #255779);
     /*background-color: #3088c3;*/
     /* causes artifacts on chrome */
+}
+
+#top {
+  background-image: unset;
+}
+
+#articles {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+#articles a {
+  padding: 20px;
+  max-height: 30vh;
+  flex: 1 1 200px;
+  transition: transform .5s;
+}
+  #articles a:hover {
+    transform: translateY(-5px);
+  }
+  #articles a > img {
+    max-height: 20vh;
+  }
+#articles > .row {
+  width: 80%;
 }
 
 footer {
@@ -321,8 +344,7 @@ div#overlay {
   text-align: center;
   padding: calc(40px - .8em);
   background-color: var(--blue);;
-  width: 300px;
-  height: 80px;
+  width: 100%;
   color: white;
   border-radius: 4px;
   margin: 0 auto;
@@ -339,7 +361,7 @@ div#overlay {
   border-radius: 4px;
   padding: calc(20px - .8em);
   font-size: 20px;
-  width: 300px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -358,6 +380,7 @@ h1.head-text {
     bottom: 0.7rem;
     font-size: 0.6rem;
     text-align: left;
+    width: 80%;
 }
 
 #info-left,
@@ -1079,7 +1102,58 @@ footer a.link-group-item:hover {
 .team-wrapper.row.columns-tiny figure {
   max-width: calc(100px + 8 * var(--vw)) !important;
 }
+#photo-modal {
+  display: none;
+  position: fixed;
+  background-color: white;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 99999;
+}
+  #photo-modal > h4 {
+    color: black;
+    width: 50%;
+    margin: 0 auto;
+    border-bottom: .5px solid #cccccc;
+  }
+  #photo-modal > ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  #photo-modal a {
+    color: black;
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    transition: transform .5s, background .5s;
+    width: 50%;
+    padding: 10px;
+    font-weight: 100;
+  }
+    #photo-modal a:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(90deg, #ffffff, #eeeeee, #ffffff);
+    }
 
+#close-photo-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transition: background-color .5s;
+  cursor: pointer;
+}
+  #close-photo-modal:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 
 /* media queries */
 
@@ -1169,15 +1243,19 @@ footer a.link-group-item:hover {
   .head-text {
     font-size: 1.5rem !important;
   }
-}
 
-@media only screen and (max-width: 990px) {
   .post-stats, #info-right {
     margin: 0 auto;
     text-align: center;
   }
   #info-right {
     width: 100%;
+  }
+  #top-text {
+    width: 60%;
+  }
+  .post-stats p {
+    margin-top: 0;
   }
 }
 
