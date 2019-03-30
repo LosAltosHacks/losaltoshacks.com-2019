@@ -165,16 +165,16 @@ section:nth-child(even) {
 #articles {
   background-color: rgba(0, 0, 0, 0.7);
 }
-#articles a {
+#articles .article {
   padding: 20px;
   max-height: 30vh;
   flex: 1 1 200px;
   transition: transform .5s;
 }
-  #articles a:hover {
+  #articles .article:hover {
     transform: translateY(-5px);
   }
-  #articles a > img {
+  #articles .article > img {
     max-height: 20vh;
   }
 #articles > .row {
