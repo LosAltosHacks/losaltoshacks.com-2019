@@ -1155,6 +1155,36 @@ footer a.link-group-item:hover {
     background-color: rgba(0, 0, 0, 0.3);
   }
 
+#lost-and-found {
+  background: white;
+}
+  #lost-and-found > div {
+    width: 80%;
+    margin: 0 auto;
+  }
+  #lost-and-found h2 {
+    color: black;
+    font-weight: bold;
+  }
+  #lost-and-found p {
+    color: black;
+    font-weight: lighter;
+    font-size: 15px;
+  }
+
+#lost-and-found-items {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50% 50%;
+  grid-gap: 20px 20px;
+}
+  #lost-and-found-items > img {
+    object-fit: cover;
+    width: 500%;
+    height: 500px;
+    /* transform: scale(.3); */
+  }
+
 /* media queries */
 
 /* tablets + small screens */
@@ -1208,6 +1238,12 @@ footer a.link-group-item:hover {
         text-align: center;
     }
 
+    #lost-and-found-items {
+      display: block;
+    }
+      #lost-and-found-items > img {
+        margin: 20px auto;
+      }
 }
 
 /* browser resize */
@@ -1242,7 +1278,7 @@ footer a.link-group-item:hover {
   }
   .head-text {
     font-size: 1.5rem !important;
-  }
+  
 
   .post-stats, #info-right {
     margin: 0 auto;
@@ -1256,6 +1292,9 @@ footer a.link-group-item:hover {
   }
   .post-stats p {
     margin-top: 0;
+
+  #lost-and-found a {
+    display: block;
   }
 }
 
