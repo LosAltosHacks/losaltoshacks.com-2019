@@ -57,3 +57,14 @@ $('.lah-input-group .reg-button').click(function() {
 $('.footer-icon > img').click(function() {
 	$("html, body").animate({ scrollTop: 0 }, "slow");
 })
+
+$(document).ready(function() {
+	$('#view-photos').click(function(e) {
+		e.preventDefault();
+		$("#photo-modal").fadeIn(500);
+	})
+
+	$("#photo-modal a, #close-photo-modal").click(function() {
+		$("#photo-modal").fadeOut(500);
+	})
+})
