@@ -163,7 +163,7 @@ section:nth-child(even) {
 }
 
 #articles {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: black;
 }
 #articles .article {
   padding: 20px;
@@ -251,7 +251,7 @@ h2 {
     height: calc(100vh - 0em);
     flex-direction: column;
     justify-content: start;
-    padding-top: 7rem;
+    padding-top: 6rem;
 }
 
 #top-canvas {
@@ -299,8 +299,8 @@ div#overlay {
 #logo-main img {
     width: 45%;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, .7));
-    max-height: 30vh;
-    min-height: 10rem;
+    max-height: 20vh;
+    min-height: 8rem;
 }
 
 #signup-button {
@@ -377,7 +377,7 @@ h1.head-text {
 #top-text {
     justify-content: space-between;
     position: absolute;
-    bottom: 0.7rem;
+    bottom: 5rem;
     font-size: 0.6rem;
     text-align: left;
     width: 80%;
