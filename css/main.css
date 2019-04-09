@@ -193,6 +193,12 @@ footer .row {
     text-align: left;
 }
 
+#lost-and-found-footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
 p.text-tiny {
     font-size: 0.5rem;
 }
